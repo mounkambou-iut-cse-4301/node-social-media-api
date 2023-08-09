@@ -13,6 +13,15 @@ console.log("DB Connection Successfull")
 ).catch((err)=>{
     console.log(err);
 })
+
+// midlleware
+app.use(express.json()) // body parser when you make post request
+app.use(helmet()) // Helmet helps secure Express apps by setting HTTP response headers.
+app.use(morgan("common"));
+
+app.get('/',(req,res)=>{
+    res.send('welcome')
+})
 app.listen(port,()=>{
     console.log(`Backend server is running on ${port}`);
 })
