@@ -4,7 +4,8 @@ const mongoose=require("mongoose");
 const dotenv=require("dotenv");
 const helmet=require("helmet");
 const morgan=require("morgan");
-
+const userRoute=require('./routes/users')
+const authRoute=require('./routes/auth')
 dotenv.config();
 const port=process.env.PORT
 
@@ -19,9 +20,8 @@ app.use(express.json()) // body parser when you make post request
 app.use(helmet()) // Helmet helps secure Express apps by setting HTTP response headers.
 app.use(morgan("common"));
 
-app.get('/',(req,res)=>{
-    res.send('welcome')
-})
+app.use("api/users",userRoute)
+app.use("api/auth",authRoute)
 app.listen(port,()=>{
     console.log(`Backend server is running on ${port}`);
 })
