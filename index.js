@@ -20,8 +20,8 @@ app.use(express.json()) // body parser when you make post request
 app.use(helmet()) // Helmet helps secure Express apps by setting HTTP response headers.
 app.use(morgan("common"));
 
-app.use("api/users",userRoute)
-app.use("api/auth",authRoute)
+app.use("/api/users",userRoute)
+app.use("/api/auth",authRoute)
 app.listen(port,()=>{
     console.log(`Backend server is running on ${port}`);
 })
