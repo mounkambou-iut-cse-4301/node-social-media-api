@@ -31,8 +31,11 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
 
-    if (user && (await bcrypt.compare(req.body.password, user.password))) {
-        return res.status(200).json(user);
+    if (user && (await bcrypt.compare(req.body.password, user.password)))
+     {
+            //do not include password, updatedAt in our respose
+    const { password, updatedAt, ...other } = user._doc;
+        return res.status(200).json(other);
     }else{
         return res.status(404).json("user or password incorrect");
     }
