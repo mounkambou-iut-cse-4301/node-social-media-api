@@ -5,6 +5,7 @@ const dotenv=require("dotenv");
 const helmet=require("helmet");
 const morgan=require("morgan");
 const userRoute=require('./routes/users')
+const postRoute=require('./routes/posts')
 const authRoute=require('./routes/auth')
 dotenv.config();
 const port=process.env.PORT
@@ -22,6 +23,7 @@ app.use(morgan("common"));
 
 app.use("/api/users",userRoute)
 app.use("/api/auth",authRoute)
+app.use("/api/posts",postRoute)
 app.listen(port,()=>{
     console.log(`Backend server is running on ${port}`);
 })
